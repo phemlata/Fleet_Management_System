@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trip Log</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2>🗺️ Trip Schedule</h2>
+    <a href="/create-trip" class="btn btn-warning mb-3">+ Schedule New Trip</a>
+    <a href="/" class="btn btn-outline-secondary mb-3">Back</a>
+
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Trip ID</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>Start Location</th>
+                <th>End Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="trip : ${trips}">
+                <td th:text="${trip.id}"></td>
+                <td th:text="${trip.vehicle.model} + ' (' + ${trip.vehicle.licensePlate} + ')'"></td>
+                <td th:text="${trip.driver.name}"></td>
+                <td th:text="${trip.startLocation}"></td>
+                <td th:text="${trip.endLocation}"></td>
+                <td><span class="badge bg-warning text-dark" th:text="${trip.status}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
